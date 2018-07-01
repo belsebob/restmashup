@@ -2,8 +2,8 @@ package com.test.resttest.heroku;
 
 import javax.ws.rs.core.MediaType;
 
-import com.restmashup.rest.InfoConsumer;
-import com.restmashup.rest.InfoService;
+import com.restmashup.rest.ArtistService;
+import com.restmashup.rest.RunServer;
 
 /**
  * This class launches the web application in an embedded Jetty container. This is the entry point to your application. The Java
@@ -12,7 +12,7 @@ import com.restmashup.rest.InfoService;
 public class Main {
 
     public static void main(String[] args) throws Exception{
-      InfoService infoService = new InfoService();
+      RunServer infoService = new RunServer();
     
       
       System.out.println("main");
