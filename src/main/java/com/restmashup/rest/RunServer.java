@@ -3,7 +3,7 @@ package com.restmashup.rest;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;
 
-public class InfoService {
+public class RunServer {
 
 	public void SetupServer() {
 	  // The port that we should run on can be set into an environment variable
