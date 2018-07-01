@@ -1,18 +1,11 @@
 package com.restmashup.rest;
 
 import java.io.IOException;
-import java.net.URI;
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.restmashup.model.MusicBrainzData.MusicBrainzArtist;
 
@@ -37,9 +30,5 @@ public class ArtistService {
 		}
 
 		return mbArtist;
-
 	}
-
-	}
-
-
+}

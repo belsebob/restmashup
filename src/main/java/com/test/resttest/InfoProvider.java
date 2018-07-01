@@ -1,12 +1,9 @@
 package com.test.resttest;
-
 import java.net.URI;
-
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
-
 import com.restmashup.model.Artist;
 import com.restmashup.model.MusicBrainzData;
 import com.restmashup.rest.ArtistService;
@@ -61,12 +58,7 @@ public class InfoProvider {
 		}
 		
 		
-		
-		
-		
-		
-		
-		
+				
 		// final mashed response
 			return artistAlbums;
 	}
@@ -75,19 +67,5 @@ public class InfoProvider {
 	// return Response.status(200).entity("getUserById is called, id : " +
 	// id).build();
 
-	// @GET
-	// public Response people() {
-	// return infoconsumer.GetData();
-	// }
 
-	// @GET
-	// public JsonArray people() {
-	// return Json.createArrayBuilder().add(person("peter",
-	// 13)).add(person("pan", 67)).build();
-	// }
-	//
-	// public JsonObject person(String name, int age) {
-	// return Json.createObjectBuilder().add(name, age).build();
-	//
-	// }
 }
