@@ -2,8 +2,8 @@ package com.test.resttest.heroku;
 
 import javax.ws.rs.core.MediaType;
 
-import com.musicinfo.rest.InfoConsumer;
-import com.musicinfo.rest.InfoService;
+import com.restmashup.rest.InfoConsumer;
+import com.restmashup.rest.InfoService;
 
 /**
  * This class launches the web application in an embedded Jetty container. This is the entry point to your application. The Java

@@ -5,13 +5,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
-import com.musicinfo.rest.InfoConsumer;
+import com.restmashup.rest.InfoConsumer;
 
 /**
  * Root resource (exposed at "myresource" path)
  */
-@Path("myresource")
-public class MyResource {
+@Path("/")
+public class InfoProvider {
 
 	/**
 	 * Method handling HTTP GET requests. The returned object will be sent to
@@ -37,15 +37,15 @@ public class MyResource {
 //		return infoconsumer.GetData();
 //	}
 
-	//
-	// @GET
-	// public JsonArray people() {
-	// return Json.createArrayBuilder().add(person("peter",
-	// 13)).add(person("pan", 67)).build();
-	// }
-	//
-	// public JsonObject person(String name, int age) {
-	// return Json.createObjectBuilder().add(name, age).build();
-	//
-	// }
+	
+//	 @GET
+//	 public JsonArray people() {
+//	 return Json.createArrayBuilder().add(person("peter",
+//	 13)).add(person("pan", 67)).build();
+//	 }
+//	
+//	 public JsonObject person(String name, int age) {
+//	 return Json.createObjectBuilder().add(name, age).build();
+//	
+//	 }
 }

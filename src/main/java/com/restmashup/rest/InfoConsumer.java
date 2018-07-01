@@ -1,4 +1,4 @@
-package com.musicinfo.rest;
+package com.restmashup.rest;
 
 import javax.json.Json;
 import javax.ws.rs.client.Client;
