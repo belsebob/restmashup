@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -40,7 +41,7 @@ public class InfoProvider {
 	@GET
 	@Path("{mbid}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Artist getArtistAndAlbumsByMbid(@PathParam("mbid") String mbid) {
+	public Response getArtistAndAlbumsByMbid(@PathParam("mbid") String mbid) {
 
 
 		Album album = new Album();
@@ -87,7 +88,12 @@ public class InfoProvider {
 			albumlist.add(album);
 		}
 		artist.setAlbums(albumlist);
-
-		return artist;
+		
+		/**
+		 * Build response with cache set to one day
+		 */
+		  CacheControl cc = new CacheControl();
+		    cc.setMaxAge(86400);
+		    return Response.ok(artist, MediaType.APPLICATION_JSON).cacheControl(cc).build();
 	}
 }
