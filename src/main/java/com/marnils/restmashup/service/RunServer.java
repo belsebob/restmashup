@@ -1,4 +1,4 @@
-package com.restmashup.rest;
+package com.marnils.restmashup.service;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.webapp.WebAppContext;

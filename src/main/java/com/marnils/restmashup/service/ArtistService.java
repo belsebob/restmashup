@@ -1,4 +1,4 @@
-package com.restmashup.rest;
+package com.marnils.restmashup.service;
 
 import java.io.IOException;
 import javax.ws.rs.client.Client;
@@ -7,7 +7,7 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.restmashup.model.MusicBrainzData.MusicBrainzArtist;
+import com.marnils.restmashup.model.MusicBrainzData.MusicBrainzArtist;
 
 public class ArtistService {
 

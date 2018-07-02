@@ -1,4 +1,4 @@
-package com.restmashup.model;
+package com.marnils.restmashup.model;
 
 import java.net.URL;
 

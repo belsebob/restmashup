@@ -1,4 +1,4 @@
-package com.restmashup.rest;
+package com.marnils.restmashup.service;
 
 import java.io.IOException;
 import java.net.MalformedURLException;

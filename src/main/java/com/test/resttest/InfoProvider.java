@@ -12,13 +12,13 @@ import javax.ws.rs.core.CacheControl;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.restmashup.model.Album;
-import com.restmashup.model.Artist;
-import com.restmashup.model.MusicBrainzData;
-import com.restmashup.model.MusicBrainzData.ReleaseGroup;
-import com.restmashup.rest.ArtistService;
-import com.restmashup.rest.CoverService;
-import com.restmashup.rest.WikipediaService;
+import com.marnils.restmashup.model.Album;
+import com.marnils.restmashup.model.Artist;
+import com.marnils.restmashup.model.MusicBrainzData;
+import com.marnils.restmashup.model.MusicBrainzData.ReleaseGroup;
+import com.marnils.restmashup.service.ArtistService;
+import com.marnils.restmashup.service.CoverService;
+import com.marnils.restmashup.service.WikipediaService;
 
 /**
  * Root resource (exposed at "/" path)

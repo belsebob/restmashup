@@ -1,6 +1,6 @@
-package com.test.resttest.heroku;
+package com.martin.restmashup.main;
 
-import com.restmashup.rest.RunServer;
+import com.marnils.restmashup.service.RunServer;
 
 public class Main {
 

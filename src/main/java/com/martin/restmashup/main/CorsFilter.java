@@ -1,4 +1,4 @@
-package com.test.resttest.heroku;
+package com.martin.restmashup.main;
 
 import java.io.IOException;
 
