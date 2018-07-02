@@ -7,9 +7,14 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Holds data for artist from MusicBrainz
+ * @author Martin
+ *
+ */
 public class MusicBrainzData {
 
-	// Java object populated by MusicBrainz, set to ignore unknown properties
+	
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	public static class MusicBrainzArtist {
 

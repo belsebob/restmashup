@@ -3,6 +3,13 @@ package com.restmashup.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Artist object
+ *  
+ * @author Martin
+ *
+ */
+
 public class Artist {
 
 	private String mbid;

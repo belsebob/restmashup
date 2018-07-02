@@ -12,11 +12,23 @@ import javax.ws.rs.core.MediaType;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Service fetches links to album covers from Cover Art Archive
+ * @author Martin
+ *
+ */
+
 public class CoverService {
 
 	Client client = ClientBuilder.newClient();
 	ObjectMapper objectMapper = new ObjectMapper();
 
+	/**
+	 * Returns cover art image URL corresponding to mbid fetched from MusicBrainz in ArtistService
+	 * 
+	 * @param id
+	 * @return imageUrl 
+	 */
 	public URL getCoverArt(String id) {
 		String json;
 		URL imageUrl = null;

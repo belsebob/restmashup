@@ -20,23 +20,23 @@ import com.restmashup.rest.CoverService;
 import com.restmashup.rest.WikipediaService;
 
 /**
- * Root resource (exposed at "myresource" path)
+ * Root resource (exposed at "/" path)
+ * Handles data fetching services, mashes up result into artist object. Returns Artist object as JSON to client
  */
 @Path("/")
 public class InfoProvider {
-
-	/**
-	 * Method handling HTTP GET requests. The returned object will be sent to
-	 * the client as "text/plain" media type.
-	 *
-	 * @return String that will be returned as a text/plain response.
-	 */
 
 	ArtistService artistService = new ArtistService();
 	WikipediaService wikipediaService = new WikipediaService();
 	CoverService coverService = new CoverService();
 
-	
+	/**
+	 * Method handling HTTP GET requests with MBID as parameter. Artist object is sent to
+	 * the client as "application/json" media type.
+	 * 
+	 * @param mbid
+	 * @return Artist
+	 */
 	@GET
 	@Path("{mbid}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -46,7 +46,9 @@ public class InfoProvider {
 		Album album = new Album();
 		ArrayList<Album> albumlist = new ArrayList<>();
 
-		// get artist info
+		/**
+		 * Fetches Music Brainz Artist from artistService
+		 */
 		MusicBrainzData.MusicBrainzArtist mbArtist = new MusicBrainzData.MusicBrainzArtist();
 		mbArtist = artistService.getArtist(mbid);
 		if (mbArtist == null) {
@@ -56,7 +58,7 @@ public class InfoProvider {
 		Artist artist = new Artist();
 		artist.setMbid(mbid);
 
-		// Java8ify or refactor other way
+	
 		String wikiBandName = null;
 		for (MusicBrainzData.Relation relation : mbArtist.getRelations()) {
 			if ("wikipedia".equals(relation.getType())) {
