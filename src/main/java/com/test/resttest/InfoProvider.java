@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.restmashup.model.Album;
@@ -34,15 +36,15 @@ public class InfoProvider {
 	WikipediaService wikipediaService = new WikipediaService();
 	CoverService coverService = new CoverService();
 
-	// @Produces(MediaType.JSON)
+	
 	@GET
 	@Path("{mbid}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public Artist getArtistAndAlbumsByMbid(@PathParam("mbid") String mbid) {
 
-		Response artistAlbums = null;
 
 		Album album = new Album();
-		ArrayList<Album> albumlist = null;
+		ArrayList<Album> albumlist = new ArrayList<>();
 
 		// get artist info
 		MusicBrainzData.MusicBrainzArtist mbArtist = new MusicBrainzData.MusicBrainzArtist();
@@ -70,34 +72,20 @@ public class InfoProvider {
 			artist.setDescription(description);
 		}
 
-		// get cover art
-
 		// merge album art and mbReleaseGroups
 		for (ReleaseGroup rg : mbArtist.getReleaseGroups()) {
 			String id = rg.getId();
-			
+
 			album.setId(id);
 			album.setTitle(rg.getTitle());
-			album.setCover(coverService.getCoverArt(id));
+			if (coverService.getCoverArt(id) != null) {
+				album.setCover(coverService.getCoverArt(id));
+			}
 
-			
 			albumlist.add(album);
 		}
 		artist.setAlbums(albumlist);
 
-		// ObjectWriter ow = new
-		// ObjectMapper().writer().withDefaultPrettyPrinter();
-		// try {
-		// String artistJson = ow.writeValueAsString(artist);
-		// } catch (JsonProcessingException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-
-		// final mashed response
 		return artist;
 	}
-
-	// return Response.status(200).entity(infoconsumer.GetData(MBID)).build();
-
 }

@@ -29,7 +29,7 @@ public class CoverService {
 		try {
 			jsonNode = objectMapper.readTree(json);
 		} catch (IOException e) {
-			e.printStackTrace();
+			return null;
 		}
 
 		try {
@@ -37,8 +37,12 @@ public class CoverService {
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
+		if(imageUrl != null) {
 		return imageUrl;
+		}
+		return null;
 	}
 
 }
