@@ -35,18 +35,6 @@
 			<artifactId>jersey-media-json-binding</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-servlet</artifactId>
-			<version>${jetty.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-webapp</artifactId>
-			<version>${jetty.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
 			<artifactId>jersey-test-framework-provider-bundle</artifactId>
 			<type>pom</type>
@@ -67,11 +55,6 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.11.0</version>
 		</dependency>
-		<plugin>
-			<groupId>org.eclipse.jetty</groupId>
-			<artifactId>jetty-maven-plugin</artifactId>
-			<version>9.4.11.v20180605</version>
-		</plugin>
 	</dependencies>
 
 	<build>
@@ -106,15 +89,7 @@
 			<plugin>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>${jetty.version}</version>
-				<configuration>
-					<contextPath>/</contextPath>
-					<webApp>
-						<contextPath>/</contextPath>
-						<webInfIncludeJarPattern>.*/.*jersey-[^/]\.jar$</webInfIncludeJarPattern>
-					</webApp>
-					<war>${project.build.directory}/${project.build.finalName}.war</war>
-				</configuration>
+				<version>9.4.11.v20180605</version>
 			</plugin>
 		</plugins>
 	</build>

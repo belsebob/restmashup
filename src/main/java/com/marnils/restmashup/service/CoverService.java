@@ -30,7 +30,7 @@ public class CoverService {
 	 * @return imageUrl 
 	 * @throws IOException 
 	 */
-	public URL getCoverArt(String id) throws IOException {
+	public URL getCoverArt(String id) throws IOException, MalformedURLException {
 		String json;
 		URL imageUrl = null;
 
