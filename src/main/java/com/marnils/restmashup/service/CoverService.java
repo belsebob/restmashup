@@ -28,8 +28,9 @@ public class CoverService {
 	 * 
 	 * @param id
 	 * @return imageUrl 
+	 * @throws IOException 
 	 */
-	public URL getCoverArt(String id) {
+	public URL getCoverArt(String id) throws IOException {
 		String json;
 		URL imageUrl = null;
 
@@ -38,23 +39,43 @@ public class CoverService {
 		json = coverArtArchiveTarget.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
 
 		JsonNode jsonNode = null;
-		try {
 			jsonNode = objectMapper.readTree(json);
-		} catch (IOException e) {
-			return null;
-		}
+			// TODO log this
 
-		try {
 			imageUrl = new URL(jsonNode.findValuesAsText("image").get(0));
-		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+			
 		if(imageUrl != null) {
 		return imageUrl;
 		}
 		return null;
 	}
+	
+//	public URL getCoverArt(String id) {
+//		String json;
+//		URL imageUrl = null;
+//
+//		WebTarget coverArtArchiveTarget = client.target("http://coverartarchive.org/release-group/" + id);
+//
+//		json = coverArtArchiveTarget.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
+//
+//		JsonNode jsonNode = null;
+//		try {
+//			jsonNode = objectMapper.readTree(json);
+//		} catch (IOException e) {
+//			// TODO log this
+//			return null;
+//		}
+//
+//		try {
+//			imageUrl = new URL(jsonNode.findValuesAsText("image").get(0));
+//		} catch (MalformedURLException e) {
+//			// TODO log this
+//			return null;
+//		}
+//		if(imageUrl != null) {
+//		return imageUrl;
+//		}
+//		return null;
+//	}
 
 }

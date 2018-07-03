@@ -1,5 +1,6 @@
 package com.test.resttest;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
@@ -81,8 +82,18 @@ public class InfoProvider {
 
 			album.setId(id);
 			album.setTitle(rg.getTitle());
-			if (coverService.getCoverArt(id) != null) {
-				album.setCover(coverService.getCoverArt(id));
+			try {
+				if (coverService.getCoverArt(id) != null) {
+					try {
+						album.setCover(coverService.getCoverArt(id));
+					} catch (IOException e) {
+						// TODO log method failed
+						e.printStackTrace();
+					}
+				}
+			} catch (IOException e) {
+				// TODO log method failed
+				e.printStackTrace();
 			}
 
 			albumlist.add(album);
