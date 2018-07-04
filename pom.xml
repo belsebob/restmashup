@@ -3,11 +3,11 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.test</groupId>
-	<artifactId>resttest</artifactId>
+	<groupId>com.marnils</groupId>
+	<artifactId>musicrestmashup</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>resttest</name>
+	<name>musicrestmashup</name>
 
 	<dependencyManagement>
 		<dependencies>
@@ -58,7 +58,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>resttest</finalName>
+		<finalName>musicrestmashup</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
