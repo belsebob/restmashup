@@ -1,7 +1,5 @@
 package com.test.resttest;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,8 +21,8 @@ import com.marnils.restmashup.service.CoverService;
 import com.marnils.restmashup.service.WikipediaService;
 
 /**
- * Root resource (exposed at "/" path) Handles data fetching services, mashes up
- * result into artist object. Returns Artist object as JSON to client
+ * Root resource (exposed at "/" path)
+ * Handles data fetching services, mashes up result into artist object. Returns Artist object as JSON to client
  */
 @Path("/")
 public class InfoProvider {
@@ -34,8 +32,8 @@ public class InfoProvider {
 	CoverService coverService = new CoverService();
 
 	/**
-	 * Method handling HTTP GET requests with MBID as parameter. Artist object
-	 * is sent to the client as "application/json" media type.
+	 * Method handling HTTP GET requests with MBID as parameter. Artist object is sent to
+	 * the client as "application/json" media type.
 	 * 
 	 * @param mbid
 	 * @return Artist
@@ -44,6 +42,7 @@ public class InfoProvider {
 	@Path("{mbid}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getArtistAndAlbumsByMbid(@PathParam("mbid") String mbid) {
+
 
 		Album album = new Album();
 		ArrayList<Album> albumlist = new ArrayList<>();
@@ -60,6 +59,7 @@ public class InfoProvider {
 		Artist artist = new Artist();
 		artist.setMbid(mbid);
 
+	
 		String wikiBandName = null;
 		for (MusicBrainzData.Relation relation : mbArtist.getRelations()) {
 			if ("wikipedia".equals(relation.getType())) {
@@ -81,24 +81,20 @@ public class InfoProvider {
 
 			album.setId(id);
 			album.setTitle(rg.getTitle());
-			try {
+			if (coverService.getCoverArt(id) != null) {
 				album.setCover(coverService.getCoverArt(id));
-			} catch (MalformedURLException e) {
-				// TODO log method failed
-				
-			} catch (IOException e) {
-				// TODO log method failed
+				// TODO make it return failed
 			}
 
 			albumlist.add(album);
 		}
 		artist.setAlbums(albumlist);
-
+		
 		/**
 		 * Build response with cache set to one day
 		 */
-		CacheControl cc = new CacheControl();
-		cc.setMaxAge(86400);
-		return Response.ok(artist, MediaType.APPLICATION_JSON).cacheControl(cc).build();
+		  CacheControl cc = new CacheControl();
+		    cc.setMaxAge(86400);
+		    return Response.ok(artist, MediaType.APPLICATION_JSON).cacheControl(cc).build();
 	}
 }
