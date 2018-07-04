@@ -1,4 +1,4 @@
-package com.martin.restmashup.main;
+package com.marnils.restmashup;
 
 
 public class Main {

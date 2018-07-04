@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CoverService {
 
-	private static final String COVERT_ART_ARCHIVE_URL = "http://coverartarchive.org/release-group/";
+	private final String COVERT_ART_ARCHIVE_URL = "http://coverartarchive.org/release-group/";
 
 	Client client = ClientBuilder.newClient();
 	ObjectMapper objectMapper = new ObjectMapper();
