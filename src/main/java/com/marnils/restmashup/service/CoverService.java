@@ -47,14 +47,14 @@ public class CoverService {
 		try {
 			jsonNode = objectMapper.readTree(json);
 		} catch (IOException e) {
-			// TODO log this
+			// TODO log this, throw custom exception
 			return null;
 		}
 
 		try {
 			imageUrl = new URL(jsonNode.findValuesAsText("image").get(0));
 		} catch (MalformedURLException e) {
-			// TODO log this
+			// TODO log this, throw custom exception
 			return null;
 		}
 		if (imageUrl != null) {

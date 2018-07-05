@@ -1,15 +1,14 @@
-package com.test.resttest;
+package com.marnils.restmashup.test;
+
+import static org.junit.Assert.assertEquals;
 
 import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
-
 import org.junit.Test;
 
-import com.marnils.infoprovider.InfoProvider;
-
-import static org.junit.Assert.assertEquals;
+import com.marnils.restmashup.InfoProvider;
 
 public class MyResourceTest extends JerseyTest {
 

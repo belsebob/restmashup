@@ -1,4 +1,4 @@
-package com.test.resttest;
+package com.marnils.restmashup;
 
 import java.net.URI;
 import java.net.URL;
