@@ -98,7 +98,8 @@ public class InfoProvider {
          * Build response with cache set to one day
          */
         CacheControl cc = new CacheControl();
-        cc.setMaxAge(86400);
+//        cc.setMaxAge(86400);
+        cc.setMaxAge(1);
         return Response.ok(artist, MediaType.APPLICATION_JSON).cacheControl(cc).build();
     }
     
