@@ -30,20 +30,13 @@ public class WikipediaService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		String extract = jsonNode.findValuesAsText("extract").get(0);
 		if (extract != null) {
 			return extract;
 		}
 
-		// try {
-		// description = objectMapper.readValue(json, WikipediaData.class);
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-
-		return "";
-		// description.getExtract();
+		return null;
 
 	}
 
@@ -52,20 +45,8 @@ public class WikipediaService {
 
 		private String extract;
 
-		// @SuppressWarnings("unchecked")
-		// @JsonProperty("query")
-		// private void unpackNested(Map<String, Object> query) {
-		//// this.pages = (String) query.get("pages");
-		// Map<String, Object> pages = (Map<String, Object>) query.get("pages");
-		// String pageIDnr = (String) pages.get("21231");
-		// Map<String, String> pageID = (Map<String, String>)
-		// pages.get("21231");
-		// this.extract = pageID.get("extract");
-		// }
-
 		private String getExtract() {
 			return extract;
 		}
 	}
 }
-

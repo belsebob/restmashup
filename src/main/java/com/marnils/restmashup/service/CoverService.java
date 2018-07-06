@@ -32,8 +32,7 @@ public class CoverService {
 	 * 
 	 * @param id
 	 * @return imageUrl
-	 * @throws IOException,
-	 *             MalformedURLException
+	 *             
 	 */
 	public URL getCoverArt(String id) {
 		String json;
@@ -47,14 +46,14 @@ public class CoverService {
 		try {
 			jsonNode = objectMapper.readTree(json);
 		} catch (IOException e) {
-			// TODO log this, throw custom exception
+			// TODO log this
 			return null;
 		}
 
 		try {
 			imageUrl = new URL(jsonNode.findValuesAsText("image").get(0));
 		} catch (MalformedURLException e) {
-			// TODO log this, throw custom exception
+			// TODO log this
 			return null;
 		}
 		if (imageUrl != null) {
