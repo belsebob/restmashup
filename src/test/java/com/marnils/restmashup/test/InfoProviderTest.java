@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import com.marnils.restmashup.InfoProvider;
 
-public class MyResourceTest extends JerseyTest {
+public class InfoProviderTest extends JerseyTest {
 
     @Override
     protected Application configure() {

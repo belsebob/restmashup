@@ -57,7 +57,7 @@ public class InfoProvider {
          */
         MusicBrainzData.MusicBrainzArtist mbArtist = new MusicBrainzData.MusicBrainzArtist();
         mbArtist = artistService.getArtist(mbid);
-        if (mbArtist == null) {
+        if (mbArtist.getId() == null) {
             return Response.serverError().build();
         }
 
@@ -84,13 +84,11 @@ public class InfoProvider {
          */
         for (ReleaseGroup rg : mbArtist.getReleaseGroups()) {
             String id = rg.getId();
-            URL coverart;
 
             album.setId(id);
             album.setTitle(rg.getTitle());
-
-            coverart = coverService.getCoverArt(id);
-            album.setCover(coverart);
+            album.setCover(coverService.getCoverArt(id));
+            
             albumlist.add(album);
         }
         artist.setAlbums(albumlist);
