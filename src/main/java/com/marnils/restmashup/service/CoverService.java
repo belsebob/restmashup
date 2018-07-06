@@ -34,7 +34,7 @@ public class CoverService {
 	 * @return imageUrl
 	 *             
 	 */
-	public URL getCoverArt(String id) {
+    public URL getCoverArt(String id) {
 		String json;
 		URL imageUrl = null;
 
