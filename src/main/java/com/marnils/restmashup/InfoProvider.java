@@ -49,7 +49,7 @@ public class InfoProvider {
             return Response.status(404, "Invalid mbid") .build();
         }
 
-        Album album = new Album();
+        
         ArrayList<Album> albumlist = new ArrayList<>();
 
         /**
@@ -83,6 +83,7 @@ public class InfoProvider {
          * / Add coverart to corresponding albums
          */
         for (ReleaseGroup rg : mbArtist.getReleaseGroups()) {
+            Album album = new Album();
             String id = rg.getId();
 
             album.setId(id);
@@ -91,8 +92,30 @@ public class InfoProvider {
             
             albumlist.add(album);
         }
+        
+//        for (ReleaseGroup rg : mbArtist.getReleaseGroups()) {
+//            String id = rg.getId();
+//
+//            album.setId(id);
+//            album.setTitle(rg.getTitle());
+//            if (coverService.getCoverArt(id) != null) {
+//                    album.setCover(coverService.getCoverArt(id));
+//                    // TODO make it return failed
+//            }
+//        }
+        
         artist.setAlbums(albumlist);
 
+        
+        
+ 
+        
+        
+        
+        
+        
+        
+        
       
         /**
          * Build response with cache set to one day
