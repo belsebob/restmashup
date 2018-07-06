@@ -93,36 +93,14 @@ public class InfoProvider {
             albumlist.add(album);
         }
         
-//        for (ReleaseGroup rg : mbArtist.getReleaseGroups()) {
-//            String id = rg.getId();
-//
-//            album.setId(id);
-//            album.setTitle(rg.getTitle());
-//            if (coverService.getCoverArt(id) != null) {
-//                    album.setCover(coverService.getCoverArt(id));
-//                    // TODO make it return failed
-//            }
-//        }
-        
         artist.setAlbums(albumlist);
 
-        
-        
- 
-        
-        
-        
-        
-        
-        
-        
       
         /**
          * Build response with cache set to one day
          */
         CacheControl cc = new CacheControl();
-//        cc.setMaxAge(86400);
-        cc.setMaxAge(1);
+        cc.setMaxAge(86400);
         return Response.ok(artist, MediaType.APPLICATION_JSON).cacheControl(cc).build();
     }
     

@@ -40,7 +40,8 @@ public class CoverService {
 
 		WebTarget coverArtArchiveTarget = client.target(COVERT_ART_ARCHIVE_URL + id);
 
-		json = coverArtArchiveTarget.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
+		json = coverArtArchiveTarget.request(MediaType.APPLICATION_JSON).header("User-Agent",
+	                "MusicRestMashup/<0.0.1> ( marnils@gmail.com )").get().readEntity(String.class);
 
 		JsonNode jsonNode = null;
 		try {
