@@ -2,6 +2,12 @@ package com.marnils.restmashup.model;
 
 import java.net.URL;
 
+/**
+ * Album object
+ *  
+ * @author Martin
+ *
+ */
 public class Album {
 	private String id;
 	private URL cover;

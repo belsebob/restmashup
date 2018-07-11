@@ -8,7 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Holds data for artist from MusicBrainz
+ * MusicBrainz Artist object
+ *  
  * @author Martin
  *
  */

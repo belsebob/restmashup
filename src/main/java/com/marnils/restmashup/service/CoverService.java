@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class CoverService {
 
-	private final String COVERT_ART_ARCHIVE_URL = "http://coverartarchive.org/release-group/";
+	private static final  String COVERT_ART_ARCHIVE_URL = "http://coverartarchive.org/release-group/";
 
 	Client client = ClientBuilder.newClient();
 	ObjectMapper objectMapper = new ObjectMapper();
@@ -32,16 +32,16 @@ public class CoverService {
 	 * 
 	 * @param id
 	 * @return imageUrl
-	 *             
+	 * 
 	 */
-    public URL getCoverArt(String id) {
+	public URL getCoverArt(String id) {
 		String json;
 		URL imageUrl = null;
 
 		WebTarget coverArtArchiveTarget = client.target(COVERT_ART_ARCHIVE_URL + id);
 
-		json = coverArtArchiveTarget.request(MediaType.APPLICATION_JSON).header("User-Agent",
-	                "MusicRestMashup/<0.0.1> ( marnils@gmail.com )").get().readEntity(String.class);
+		json = coverArtArchiveTarget.request(MediaType.APPLICATION_JSON)
+				.header("User-Agent", "MusicRestMashup/<0.0.1> ( marnils@gmail.com )").get().readEntity(String.class);
 
 		JsonNode jsonNode = null;
 		try {
@@ -57,10 +57,7 @@ public class CoverService {
 			// TODO log this
 			return null;
 		}
-		if (imageUrl != null) {
-			return imageUrl;
-		}
-		return null;
+		return imageUrl;
 	}
 
 }

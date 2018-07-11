@@ -8,6 +8,13 @@ import org.junit.Test;
 
 import com.marnils.restmashup.InfoProvider;
 
+/**
+ * Test Class
+ * 
+ * @author Martin
+ *
+ */
+
 public class InfoProviderTest extends JerseyTest {
 
     @Override
@@ -16,7 +23,7 @@ public class InfoProviderTest extends JerseyTest {
     }
 
     /**
-     * Sends correct mbid for Nirvana.
+     * Sends correct mbid for artist Nirvana, checks result.
      */
     @Test
     public void testGetNirvanaAlbumInfo() {

@@ -6,9 +6,15 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+/**
+ * Service fetches artist informationfrom Wikipedia
+ * 
+ * @author Martin
+ *
+ */
 
 public class WikipediaService {
 

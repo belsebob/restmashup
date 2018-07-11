@@ -31,7 +31,7 @@ public class Artist {
 		return this.albums;
 	}
 
-	public void setAlbums(ArrayList<Album> albums) {
+	public void setAlbums(List<Album> albums) {
 		this.albums = albums;
 	}
 

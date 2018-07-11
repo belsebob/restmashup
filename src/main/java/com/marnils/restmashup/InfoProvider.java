@@ -1,10 +1,8 @@
 package com.marnils.restmashup;
 
 import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.UUID;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -29,88 +27,85 @@ import com.marnils.restmashup.service.WikipediaService;
 @Path("/")
 public class InfoProvider {
 
-    ArtistService artistService = new ArtistService();
-    WikipediaService wikipediaService = new WikipediaService();
-    CoverService coverService = new CoverService();
+	ArtistService artistService = new ArtistService();
+	WikipediaService wikipediaService = new WikipediaService();
+	CoverService coverService = new CoverService();
 
-    /**
-     * Method handling HTTP GET requests with MBID as parameter. Artist object
-     * is sent to the client as "application/json" media type.
-     * 
-     * @param mbid
-     * @return Artist
-     */
-    @GET
-    @Path("{mbid}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response getArtistAndAlbumsByMbid(@PathParam("mbid") String mbid) {
-        
-        if (!validateParam(mbid)){
-            return Response.status(404, "Invalid mbid") .build();
-        }
+	/**
+	 * Method handling HTTP GET requests with MBID as parameter. Artist object
+	 * is sent to the client as "application/json" media type.
+	 * 
+	 * @param mbid
+	 * @return Artist
+	 */
+	@GET
+	@Path("{mbid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getArtistAndAlbumsByMbid(@PathParam("mbid") String mbid) {
 
-        
-        ArrayList<Album> albumlist = new ArrayList<>();
+		if (!validateParam(mbid)) {
+			return Response.status(404, "Invalid mbid").build();
+		}
 
-        /**
-         * Fetches Music Brainz Artist from artistService
-         */
-        MusicBrainzData.MusicBrainzArtist mbArtist = new MusicBrainzData.MusicBrainzArtist();
-        mbArtist = artistService.getArtist(mbid);
-        if (mbArtist.getId() == null) {
-            return Response.serverError().build();
-        }
+		ArrayList<Album> albumlist = new ArrayList<>();
 
-        Artist artist = new Artist();
-        artist.setMbid(mbid);
+		/**
+		 * Fetches Music Brainz Artist from artistService
+		 */
+		MusicBrainzData.MusicBrainzArtist mbArtist = artistService.getArtist(mbid);
+		if (mbArtist == null) {
+			return Response.serverError().build();
+		}
 
-        String wikiBandName = null;
-        for (MusicBrainzData.Relation relation : mbArtist.getRelations()) {
-            if ("wikipedia".equals(relation.getType())) {
-                URI uri = relation.getUrl().getResource();
-                String path = uri.getPath();
-                wikiBandName = path.substring(path.lastIndexOf('/') + 1);
-                break;
-            }
-        }
+		Artist artist = new Artist();
+		artist.setMbid(mbid);
 
-        if (wikiBandName != null) {
-            String description = wikipediaService.getDescription(wikiBandName);
-            artist.setDescription(description);
-        }
+		String wikiBandName = null;
+		for (MusicBrainzData.Relation relation : mbArtist.getRelations()) {
+			if ("wikipedia".equals(relation.getType())) {
+				URI uri = relation.getUrl().getResource();
+				String path = uri.getPath();
+				wikiBandName = path.substring(path.lastIndexOf('/') + 1);
+				break;
+			}
+		}
 
-        /**
-         * / Add coverart to corresponding albums
-         */
-        for (ReleaseGroup rg : mbArtist.getReleaseGroups()) {
-            Album album = new Album();
-            String id = rg.getId();
+		if (wikiBandName != null) {
+			String description = wikipediaService.getDescription(wikiBandName);
+			artist.setDescription(description);
+		}
 
-            album.setId(id);
-            album.setTitle(rg.getTitle());
-            album.setCover(coverService.getCoverArt(id));
-            
-            albumlist.add(album);
-        }
-        
-        artist.setAlbums(albumlist);
+		/**
+		 * / Add coverart to corresponding albums
+		 */
+		for (ReleaseGroup rg : mbArtist.getReleaseGroups()) {
+			Album album = new Album();
+			String id = rg.getId();
 
-      
-        /**
-         * Build response with cache set to one day
-         */
-        CacheControl cc = new CacheControl();
-        cc.setMaxAge(86400);
-        return Response.ok(artist, MediaType.APPLICATION_JSON).cacheControl(cc).build();
-    }
-    
-    private boolean validateParam(String mbid) {
-        Pattern p = Pattern.compile("[A-Za-z0-9-]");
-        Matcher m = p.matcher(mbid);
-        if (m.find()) {
-        return true;    
-        }
-        return false;
-        
-    }
+			album.setId(id);
+			album.setTitle(rg.getTitle());
+			album.setCover(coverService.getCoverArt(id));
+
+			albumlist.add(album);
+		}
+
+		artist.setAlbums(albumlist);
+
+		/**
+		 * Build response with cache set to one day
+		 */
+		CacheControl cc = new CacheControl();
+		cc.setMaxAge(86400);
+		return Response.ok(artist, MediaType.APPLICATION_JSON).cacheControl(cc).build();
+	}
+
+	private boolean validateParam(String mbid) {
+		try {
+			UUID.fromString(mbid);
+		} catch (IllegalArgumentException e) {
+			return false;
+		}
+		return true;
+
+	}
 }
